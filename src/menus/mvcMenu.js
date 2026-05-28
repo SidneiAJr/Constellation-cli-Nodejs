@@ -7,7 +7,7 @@ import { gerarBackendJava } from '../generators/backendJavaSpring.js'
 import { gerarBackendPHP } from '../generators/backendPHP.js'
 import { gerarBackendCs } from '../generators/backendcs.js'
 import { gerarBackendTS } from '../generators/backendts.js'
-import { gerarFrontend } from '../generators/frontend.js'
+import {gerarFrontend} from '../generators/frontend.js'
 
 export async function mvcMenu(projectName) {
   const { opcao } = await inquirer.prompt([
