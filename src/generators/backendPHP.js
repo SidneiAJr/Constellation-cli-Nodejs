@@ -1,37 +1,24 @@
 import { criarArquivo, criarPasta } from '../utils/fileHelper.js'
 import path from 'path'
+import { getEstruturaPorArquitetura } from '../templates/estruturasbackend.js'
 
-export function gerarBackendPHP(projectName) {
+export async function gerarBackendPHP(projectName, arquitetura = 'mvc') {
   const base = path.join(projectName, 'Backend')
 
-  const pastas = [
-    'app/controller', 'app/model', 'app/service',
-    'app/repository', 'app/middleware', 'app/entity',
-    'app/dto', 'app/config', 'app/helpers',
-    'app/utils', 'app/routes', 'docs', 'public', 'tests'
-  ]
-  pastas.forEach(p => criarPasta(path.join(base, p)))
+  // ============================================
+  // 1. PEGA A ESTRUTURA CORRETA (PHP + arquitetura)
+  // ============================================
+  const { pastas, arquivos } = getEstruturaPorArquitetura('php', arquitetura)
 
-  const arquivos = [
-    'app/controller/HomeController.php',
-    'app/controller/UserController.php',
-    'app/controller/AuthController.php',
-    'app/model/UserModel.php',
-    'app/model/ProductModel.php',
-    'app/service/UserService.php',
-    'app/service/AuthService.php',
-    'app/repository/UserRepository.php',
-    'app/middleware/AuthMiddleware.php',
-    'app/middleware/ErrorMiddleware.php',
-    'app/routes/index.php',
-    'app/routes/user.php',
-    'app/config/database.php',
-    'app/config/env.php',
-    'public/index.php',
-  ]
+  // ============================================
+  // 2. CRIA PASTAS E ARQUIVOS
+  // ============================================
+  pastas.forEach(p => criarPasta(path.join(base, p)))
   arquivos.forEach(f => criarArquivo(path.join(base, f)))
 
-  // ✅ Conteúdo mínimo para public/index.php
+  // ============================================
+  // 3. public/index.php (se não existir na estrutura, cria)
+  // ============================================
   const indexContent = `<?php
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -51,7 +38,9 @@ $app->run();
 `
   criarArquivo(path.join(base, 'public/index.php'), indexContent)
 
-  // ✅ Conteúdo para app/config/env.php
+  // ============================================
+  // 4. app/config/env.php
+  // ============================================
   const envContent = `<?php
 namespace App\\Config;
 
@@ -70,7 +59,9 @@ class Env
 `
   criarArquivo(path.join(base, 'app/config/env.php'), envContent)
 
-  // ✅ composer.json
+  // ============================================
+  // 5. composer.json
+  // ============================================
   const composerJson = {
     name: projectName.toLowerCase().replace(/\s+/g, '-') + '/backend',
     description: `API PHP Slim - ${projectName}`,
@@ -101,7 +92,9 @@ class Env
     JSON.stringify(composerJson, null, 2)
   )
 
-  // ✅ .env
+  // ============================================
+  // 6. .env
+  // ============================================
   criarArquivo(
     path.join(base, '.env'),
     `DB_HOST=localhost
@@ -112,7 +105,9 @@ JWT_SECRET=changeme
 APP_ENV=development`
   )
 
-  // ✅ .gitignore
+  // ============================================
+  // 7. .gitignore
+  // ============================================
   criarArquivo(
     path.join(base, '.gitignore'),
     `vendor/
@@ -122,7 +117,9 @@ APP_ENV=development`
 composer.lock`
   )
 
-  // ✅ README.md
+  // ============================================
+  // 8. README.md
+  // ============================================
   const readme = `# ${projectName} - Backend PHP Slim
 
 ## Como rodar

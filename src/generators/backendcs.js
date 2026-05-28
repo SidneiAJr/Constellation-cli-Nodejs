@@ -1,42 +1,24 @@
 import { criarArquivo, criarPasta } from '../utils/fileHelper.js'
 import path from 'path'
+import { getEstruturaPorArquitetura } from '../templates/estruturasbackend.js'
 
-export function gerarBackendCs(projectName) {
+export async function gerarBackendCs(projectName, arquitetura = 'mvc') {
   const base = path.join(projectName, 'Backend')
 
-  // ✅ Estrutura correta ASP.NET Core — não tem app/, fica na raiz
-  const pastas = [
-    'Controllers', 'Models', 'Services',
-    'Repositories', 'Middleware', 'DTOs',
-    'Config', 'Utils', 'Exceptions', 'docs'
-  ]
-  pastas.forEach(p => criarPasta(path.join(base, p)))
+  // ============================================
+  // 1. PEGA A ESTRUTURA CORRETA (C# + arquitetura)
+  // ============================================
+  const { pastas, arquivos } = getEstruturaPorArquitetura('cs', arquitetura)
 
-  const arquivos = [
-    'Controllers/HomeController.cs',
-    'Controllers/UserController.cs',
-    'Controllers/AuthController.cs',
-    'Models/User.cs',
-    'Models/Product.cs',
-    'Models/BaseEntity.cs',
-    'Services/UserService.cs',
-    'Services/AuthService.cs',
-    'Repositories/UserRepository.cs',
-    'Repositories/ProductRepository.cs',
-    'DTOs/UserRequestDTO.cs',
-    'DTOs/UserResponseDTO.cs',
-    'DTOs/AuthRequestDTO.cs',
-    'Middleware/AuthMiddleware.cs',
-    'Middleware/ErrorMiddleware.cs',
-    'Config/DatabaseConfig.cs',
-    'Config/JwtConfig.cs',
-    'Utils/JwtUtil.cs',
-    'Program.cs',
-    'appsettings.json',
-  ]
+  // ============================================
+  // 2. CRIA PASTAS E ARQUIVOS
+  // ============================================
+  pastas.forEach(p => criarPasta(path.join(base, p)))
   arquivos.forEach(f => criarArquivo(path.join(base, f)))
 
-  // ✅ .csproj — gerenciador do C#, não package.json
+  // ============================================
+  // 3. .csproj
+  // ============================================
   const csproj = `<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -57,7 +39,9 @@ export function gerarBackendCs(projectName) {
     csproj
   )
 
-  // ✅ appsettings.json
+  // ============================================
+  // 4. appsettings.json
+  // ============================================
   const appSettings = {
     ConnectionStrings: {
       DefaultConnection: 'Server=localhost;Database=app_db;User=root;Password=root;'
@@ -76,6 +60,9 @@ export function gerarBackendCs(projectName) {
     JSON.stringify(appSettings, null, 2)
   )
 
+  // ============================================
+  // 5. .gitignore
+  // ============================================
   criarArquivo(
     path.join(base, '.gitignore'),
     'bin/\nobj/\n.env\n*.user\n.vs/'

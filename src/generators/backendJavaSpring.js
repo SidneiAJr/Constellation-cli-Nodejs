@@ -1,53 +1,25 @@
 import { criarArquivo, criarPasta } from '../utils/fileHelper.js'
 import path from 'path'
-import { pomTemplate } from '../templates/pomTemplate.js'
 import { menuDependencias } from '../menus/DepenciasMenu.js'
+import { getEstruturaPorArquitetura } from '../templates/estruturasbackend.js'
 
-export async function gerarBackendJava(projectName) {
+export async function gerarBackendJava(projectName, arquitetura = 'mvc') {
   const base = path.join(projectName, 'Backend')
 
-  // ✅ Estrutura correta Spring Boot
-  const pastas = [
-    'src/main/java/com/constellation/app/controller',
-    'src/main/java/com/constellation/app/model',
-    'src/main/java/com/constellation/app/service',
-    'src/main/java/com/constellation/app/repository',
-    'src/main/java/com/constellation/app/dto',
-    'src/main/java/com/constellation/app/config',
-    'src/main/java/com/constellation/app/exception',
-    'src/main/java/com/constellation/app/utils',
-    'src/main/java/com/constellation/app/security',
-    'src/main/resources',
-    'src/test/java',
-    'docs'
-  ]
-  pastas.forEach(p => criarPasta(path.join(base, p)))
+  // ============================================
+  // 1. PEGA A ESTRUTURA CORRETA (JAVA + arquitetura)
+  // ============================================
+  const { pastas, arquivos } = getEstruturaPorArquitetura('java', arquitetura)
 
-  const javaBase = 'src/main/java/com/constellation/app'
-  const arquivos = [
-    `${javaBase}/controller/HomeController.java`,
-    `${javaBase}/controller/UserController.java`,
-    `${javaBase}/controller/AuthController.java`,
-    `${javaBase}/model/Usuario.java`,
-    `${javaBase}/model/Produto.java`,
-    `${javaBase}/model/BaseEntity.java`,
-    `${javaBase}/service/UserService.java`,
-    `${javaBase}/service/AuthService.java`,
-    `${javaBase}/repository/UserRepository.java`,
-    `${javaBase}/repository/ProdutoRepository.java`,
-    `${javaBase}/dto/UserRequestDTO.java`,
-    `${javaBase}/dto/UserResponseDTO.java`,
-    `${javaBase}/dto/AuthRequestDTO.java`,
-    `${javaBase}/config/SecurityConfig.java`,
-    `${javaBase}/config/CorsConfig.java`,
-    `${javaBase}/exception/GlobalExceptionHandler.java`,
-    `${javaBase}/exception/BusinessException.java`,
-    `${javaBase}/utils/JwtUtil.java`,
-    `${javaBase}/security/AuthInterceptor.java`,
-  ]
+  // ============================================
+  // 2. CRIA PASTAS E ARQUIVOS
+  // ============================================
+  pastas.forEach(p => criarPasta(path.join(base, p)))
   arquivos.forEach(f => criarArquivo(path.join(base, f)))
 
-  // ✅ Application.java (classe principal)
+  // ============================================
+  // 3. Application.java (classe principal) - se não existir na estrutura
+  // ============================================
   const mainAppContent = `package com.constellation.app;
 
 import org.springframework.boot.SpringApplication;
@@ -59,15 +31,26 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }`
-  criarArquivo(path.join(base, 'src/main/java/com/constellation/app/Application.java'), mainAppContent)
 
-  // ✅ Pergunta nível de dependência para Java
+  // Só cria se o arquivo não foi incluído na estrutura
+  const appPath = path.join(base, 'src/main/java/com/constellation/app/Application.java')
+  if (!arquivos.includes('src/main/java/com/constellation/app/Application.java')) {
+    criarArquivo(appPath, mainAppContent)
+  }
+
+  // ============================================
+  // 4. PERGUNTA NÍVEL DE DEPENDÊNCIA PARA JAVA
+  // ============================================
   const { pomXml, nivel } = await menuDependencias(projectName, 'java', 'java')
 
-  // ✅ pom.xml — dinâmico conforme nível
+  // ============================================
+  // 5. pom.xml — dinâmico conforme nível
+  // ============================================
   criarArquivo(path.join(base, 'pom.xml'), pomXml)
 
-  // ✅ application.properties
+  // ============================================
+  // 6. application.properties
+  // ============================================
   criarArquivo(
     path.join(base, 'src/main/resources/application.properties'),
     `server.port=8080
@@ -80,7 +63,9 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true`
   )
 
-  // ✅ application-dev.properties (opcional)
+  // ============================================
+  // 7. application-dev.properties (opcional - enterprise)
+  // ============================================
   if (nivel === 'enterprise') {
     criarArquivo(
       path.join(base, 'src/main/resources/application-dev.properties'),
@@ -93,7 +78,9 @@ spring.h2.console.enabled=true`
     )
   }
 
-  // ✅ .gitignore
+  // ============================================
+  // 8. .gitignore
+  // ============================================
   criarArquivo(
     path.join(base, '.gitignore'),
     `target/
@@ -106,7 +93,9 @@ spring.h2.console.enabled=true`
 .DS_Store`
   )
 
-  // ✅ README.md
+  // ============================================
+  // 9. README.md
+  // ============================================
   const readme = `# ${projectName} - Backend Spring Boot
 
 ## Como rodar
@@ -133,6 +122,7 @@ mvn spring-boot:run
 - Lombok
 - Swagger/OpenAPI (http://localhost:8080/swagger-ui.html)
 
+## Arquitetura: ${arquitetura.toUpperCase()}
 ## Nível: ${nivel === 'enterprise' ? '🏢 Enterprise' : '📦 Padrão'}
 `
   criarArquivo(path.join(base, 'README.md'), readme)
