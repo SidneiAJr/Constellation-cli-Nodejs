@@ -24,20 +24,28 @@ export async function mvcMenu(projectName) {
     }
   ])
 
-  // ✅ Só pergunta nível se for JS ou TS
-  let nivel = 'avancado' // padrão
-  if (opcao === 'js' || opcao === 'ts') {
-    nivel = await menuDependencias()
-  }
-
   const spinner = ora('✨ Criando estrutura...').start()
 
-  // Passa o nível para os geradores JS/TS
-  if (opcao === 'js') await gerarBackendJS(projectName, nivel)
-  if (opcao === 'ts') await gerarBackendTS(projectName, nivel)
-  if (opcao === 'java') await gerarBackendJava(projectName)
-  if (opcao === 'php') await gerarBackendPHP(projectName)
-  if (opcao === 'cs') await gerarBackendCs(projectName)
+  // ✅ Passa o projectName para o menuDependencias!
+  if (opcao === 'js') {
+    const { packageJson, nivel } = await menuDependencias(projectName, 'js', 'js')
+    await gerarBackendJS(projectName, packageJson, nivel)
+  } 
+  else if (opcao === 'ts') {
+    const { packageJson, tsconfig, nivel } = await menuDependencias(projectName, 'ts', 'js')
+    await gerarBackendTS(projectName, packageJson, tsconfig, nivel)
+  }
+  else if (opcao === 'java') {
+    const { pomXml } = await menuDependencias(projectName, 'java', 'java')
+    await gerarBackendJava(projectName, pomXml)
+  }
+  else if (opcao === 'php') {
+    await gerarBackendPHP(projectName)
+  }
+  else if (opcao === 'cs') {
+    const { csproj } = await menuDependencias(projectName, 'cs', 'cs')
+    await gerarBackendCs(projectName, csproj)
+  }
 
   spinner.succeed(chalk.green('✅ Projeto criado com sucesso!'))
 
