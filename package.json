@@ -1,0 +1,22 @@
+{
+  "name": "constellation-cli-create",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "constellation": "./bin/cli.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "inquirer": "^9.3.0",
+    "ora": "^9.4.0"
+  }
+}
