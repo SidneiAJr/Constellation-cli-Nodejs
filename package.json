@@ -1,5 +1,5 @@
 {
-  "name": "constellation-cli-create",
+  "name": "albertool-constellation",
   "version": "1.0.0",
   "description": "Gerador de projetos multi-arquitetura e multi-linguagem (MVC, DDD, Clean, Hexagonal) para JS, TS, Java, PHP e C#",
   "license": "MIT",

@@ -5,10 +5,17 @@ import { mainMenu } from '../src/menus/mainMenu.js'
 
 console.log(chalk.cyan(`
 ===========================================
-  CONSTELLATION CLI CREATE 4.0 Node Edition
-  CLI for Dev's | Made in Brasil 🇧🇷
-  Create Backend MVC Only
-  Empty Files
+  Albertool| CONSTELLATION CLI 4.0N
+  Multi-Architecture | Multi-Language
+  Made in Brasil 🇧🇷
+===========================================
+  🏗️ MVC      | 🎯 DDD
+  🧹 Clean    | 🔷 Hexagonal
+===========================================
+  📦 Generate complete projects in seconds
+  🚀 Backend + Frontend (optional)
+  👍Thanks For Help!
+  ☕Pay One Coffe
 ===========================================
 `))
 
