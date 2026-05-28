@@ -7,6 +7,7 @@ import { gerarBackendJava } from '../generators/backendJavaSpring.js'
 import { gerarBackendPHP } from '../generators/backendPHP.js'
 import { gerarBackendCs } from '../generators/backendcs.js'
 import { gerarBackendTS } from '../generators/backendts.js'
+import { gerarFrontend } from '../generators/frontend.js'
 
 export async function mvcMenu(projectName) {
   const { opcao } = await inquirer.prompt([
@@ -24,7 +25,7 @@ export async function mvcMenu(projectName) {
     }
   ])
 
-  const spinner = ora('✨ Criando estrutura...').start()
+  const spinner = ora('✨ Criando backend...').start()
 
   // ✅ Passa o projectName para o menuDependencias!
   if (opcao === 'js') {
@@ -47,7 +48,33 @@ export async function mvcMenu(projectName) {
     await gerarBackendCs(projectName, csproj)
   }
 
-  spinner.succeed(chalk.green('✅ Projeto criado com sucesso!'))
+  spinner.succeed(chalk.green('✅ Backend criado com sucesso!'))
+
+  // ============================================
+  // PERGUNTA SE QUER FRONTEND
+  // ============================================
+  const { querFrontend } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'querFrontend',
+      message: '🎨 Criar frontend de teste (HTML + JS + API client)?',
+      default: false
+    }
+  ])
+
+  if (querFrontend) {
+    const spinnerFront = ora('📦 Criando frontend...').start()
+    await gerarFrontend(projectName)
+    spinnerFront.succeed(chalk.green('✅ Frontend criado!'))
+  }
+
+  // ============================================
+  // PRÓXIMOS PASSOS (ajustado)
+  // ============================================
+  let passosFront = ''
+  if (querFrontend) {
+    passosFront = `\n   cd ${projectName}/Frontend && npx live-server`
+  }
 
   const passos = {
     js:   `cd ${projectName}/Backend && npm install && npm run dev`,
@@ -59,6 +86,6 @@ export async function mvcMenu(projectName) {
 
   console.log(chalk.yellow(`
 🚀 Próximos passos:
-   ${passos[opcao]}
+   ${passos[opcao]}${passosFront}
   `))
 }
