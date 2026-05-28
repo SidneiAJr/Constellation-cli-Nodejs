@@ -10,6 +10,12 @@ O código gerado é um esqueleto funcional. Cabe ao desenvolvedor implementar a 
 
 ---
 
+## Tela: 
+
+<img width="340" height="293" alt="image" src="https://github.com/user-attachments/assets/a1a18dea-cbb1-46c0-ba81-5f013968757d" />
+
+---
+
 ## ✨ Funcionalidades
 
 - ✅ 5 linguagens (JavaScript, TypeScript, Java, PHP, C#)
