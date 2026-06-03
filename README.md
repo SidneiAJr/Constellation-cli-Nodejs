@@ -7,6 +7,7 @@ Um gerador de projetos completo que cria a estrutura backend e frontend para voc
 ## ⚠️ Aviso!
 
 > O código gerado é um esqueleto funcional. Cabe ao desenvolvedor implementar a lógica de negócio, testes e segurança adicional conforme necessário.
+
 > Observação Outras Arquiterturas criadas baseadas em documentação.
 
 ---
