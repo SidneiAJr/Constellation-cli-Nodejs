@@ -56,7 +56,10 @@ Um gerador de projetos completo que cria a estrutura backend e frontend para voc
 
 ## 📦 Instalação
 
-- Somente Local Ainda não publicado no npm.
+- Clonar repositorio
+- Instalar Depencia com npm i
+- depois rodar com npm start
+- Obrigado!
 
 
 ## 📦 Níveis de dependência (JS/TS)
