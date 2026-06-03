@@ -1,4 +1,4 @@
-# Constellation CLI | Node.js Edition
+# 🌟 Constellation CLI | Node.js Edition
 
 Um gerador de projetos completo que cria a estrutura backend e frontend para você em segundos. Suporte a múltiplas linguagens, frameworks, arquiteturas e níveis de complexidade.
 
