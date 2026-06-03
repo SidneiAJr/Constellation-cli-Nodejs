@@ -1,13 +1,18 @@
 import chalk from 'chalk'
 import ora from 'ora'
 import inquirer from 'inquirer'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { menuDependencias } from './DepenciasMenu.js'
 import { gerarBackendJS } from '../generators/backendJS.js'
 import { gerarBackendJava } from '../generators/backendJavaSpring.js'
 import { gerarBackendPHP } from '../generators/backendPHP.js'
 import { gerarBackendCs } from '../generators/backendcs.js'
-import { gerarBackendTS } from '../generators/backendts.js'
-import {gerarFrontend} from '../generators/frontend.js'
+import { gerarBackendTS } from '../generators/backendTS.js'
+import { gerarFrontend } from '../generators/frontend.js'
+import { gitignoreGlobal } from '../templates/gitignore.js'
+import { databaseInit } from '../templates/sqlTeste.js'
+import { criarArquivo } from '../utils/fileHelper.js'
 
 export async function mvcMenu(projectName) {
   const { opcao } = await inquirer.prompt([
@@ -27,7 +32,7 @@ export async function mvcMenu(projectName) {
 
   const spinner = ora('✨ Criando backend...').start()
 
-  // ✅ Passa o projectName para o menuDependencias!
+  // Gera o backend conforme linguagem escolhida
   if (opcao === 'js') {
     const { packageJson, nivel } = await menuDependencias(projectName, 'js', 'js')
     await gerarBackendJS(projectName, packageJson, nivel)
@@ -51,6 +56,33 @@ export async function mvcMenu(projectName) {
   spinner.succeed(chalk.green('✅ Backend criado com sucesso!'))
 
   // ============================================
+  // EXTRAS NA RAIZ (foda-se)
+  // ============================================
+
+  // .gitignore global
+  criarArquivo(path.join(projectName, '.gitignore'), gitignoreGlobal)
+
+  // init.sql (banco de teste)
+  criarArquivo(path.join(projectName, 'init.sql'), databaseInit(projectName, 'mysql'))
+
+  // Docker (se o usuário quiser)
+  const { usarDocker } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'usarDocker',
+      message: '🐳 Criar docker-compose.yml com MySQL, PostgreSQL, Redis e phpMyAdmin?',
+      default: false
+    }
+  ])
+
+  if (usarDocker) {
+    const { dockerComposeFull } = await import('../templates/dockerFull.js')
+    criarArquivo(path.join(projectName, 'docker-compose.yml'), dockerComposeFull(projectName))
+    console.log(chalk.green('✅ docker-compose.yml criado!'))
+    console.log(chalk.yellow('   Para subir: docker-compose up -d'))
+  }
+
+  // ============================================
   // PERGUNTA SE QUER FRONTEND
   // ============================================
   const { querFrontend } = await inquirer.prompt([
@@ -69,7 +101,7 @@ export async function mvcMenu(projectName) {
   }
 
   // ============================================
-  // PRÓXIMOS PASSOS (ajustado)
+  // PRÓXIMOS PASSOS
   // ============================================
   let passosFront = ''
   if (querFrontend) {

@@ -55,8 +55,8 @@ public class Application {
     path.join(base, 'src/main/resources/application.properties'),
     `server.port=8080
 spring.datasource.url=jdbc:mysql://localhost:3306/${projectName.toLowerCase()}_db
-spring.datasource.username=root
-spring.datasource.password=root
+spring.datasource.username=
+spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
 jwt.secret=changeme
 spring.jpa.show-sql=true

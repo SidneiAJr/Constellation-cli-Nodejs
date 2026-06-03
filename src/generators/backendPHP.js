@@ -98,8 +98,8 @@ class Env
   criarArquivo(
     path.join(base, '.env'),
     `DB_HOST=localhost
-DB_USER=root
-DB_PASS=root
+DB_USER=
+DB_PASS=
 DB_NAME=${projectName.toLowerCase()}_db
 JWT_SECRET=changeme
 APP_ENV=development`
