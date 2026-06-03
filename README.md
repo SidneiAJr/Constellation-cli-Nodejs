@@ -16,7 +16,7 @@ O código gerado é um esqueleto funcional. Cabe ao desenvolvedor implementar a 
 
 ---
 
-## 🧰 Tecnologias dos Cursos
+## 🧰 Tecnologias Disponiveis:
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" height="45" title="Java"/>
