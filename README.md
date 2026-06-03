@@ -42,9 +42,8 @@ O código gerado é um esqueleto funcional. Cabe ao desenvolvedor implementar a 
 
 ## 📦 Instalação
 
-```bash
-npm install -g constellation-cli-create
-```
+- Somente Local Ainda não publicado no npm.
+
 
 ## 📦 Níveis de dependência (JS/TS)
 
