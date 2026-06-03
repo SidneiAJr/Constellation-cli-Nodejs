@@ -56,10 +56,12 @@ Um gerador de projetos completo que cria a estrutura backend e frontend para voc
 
 ## 📦 Instalação
 
-- Clonar repositorio
-- Instalar Depencia com npm i
-- depois rodar com npm start
-- Obrigado!
+```bash
+git clone https://github.com/sidalbertok/constellation-cli
+cd constellation-cli
+npm i
+npm start
+```
 
 
 ## 📦 Níveis de dependência (JS/TS)
