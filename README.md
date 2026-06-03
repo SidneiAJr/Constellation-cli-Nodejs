@@ -16,6 +16,18 @@ O código gerado é um esqueleto funcional. Cabe ao desenvolvedor implementar a 
 
 ---
 
+## 🧰 Tecnologias dos Cursos
+
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" height="45" title="Java"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="45" title="JavaScript"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" height="45" title="TypeScript"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" height="45" title="C#"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"  height="45" />      
+</p>
+
+---
+
 ## ✨ Funcionalidades
 
 - ✅ 5 linguagens (JavaScript, TypeScript, Java, PHP, C#)
