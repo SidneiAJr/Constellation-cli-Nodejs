@@ -4,56 +4,55 @@
 // MVC - JavaScript
 // ============================================
 export const pastasMVC_JS = [
-  'app/controller', 'app/model', 'app/service',
-  'app/repository', 'app/middleware', 'app/entity',
-  'app/dto', 'app/config', 'app/helpers',
-  'app/utils', 'app/routes', 'docs', 'public', 'tests'
+  'src/controller', 'src/model', 'src/service',
+  'src/repository', 'src/middleware', 'src/entity',
+  'src/dto', 'src/config', 'src/helpers',
+  'src/utils', 'src/routes', 'docs', 'public', 'tests'
 ]
 
 export const arquivosMVC_JS = [
-  'app/controller/HomeController.js',
-  'app/controller/UserController.js',
-  'app/controller/AuthController.js',
-  'app/model/UserModel.js',
-  'app/model/ProductModel.js',
-  'app/service/UserService.js',
-  'app/service/AuthService.js',
-  'app/repository/UserRepository.js',
-  'app/middleware/auth.middleware.js',
-  'app/middleware/error.middleware.js',
-  'app/routes/index.routes.js',
-  'app/routes/user.routes.js',
-  'app/config/database.config.js',
-  'app/config/env.config.js',
+  'src/controller/HomeController.js',
+  'src/controller/UserController.js',
+  'src/controller/AuthController.js',
+  'src/model/UserModel.js',
+  'src/model/ProductModel.js',
+  'src/service/UserService.js',
+  'src/service/AuthService.js',
+  'src/repository/UserRepository.js',
+  'src/middleware/auth.middleware.js',
+  'src/middleware/error.middleware.js',
+  'src/routes/index.routes.js',
+  'src/routes/user.routes.js',
+  'src/config/database.config.js',
+  'src/config/env.config.js',
 ]
 
 // ============================================
 // MVC - TypeScript
 // ============================================
 export const pastasMVC_TS = [
-  'app/controller', 'app/model', 'app/service',
-  'app/repository', 'app/middleware', 'app/entity',
-  'app/dto', 'app/config', 'app/helpers',
-  'app/utils', 'app/routes', 'docs', 'public', 'tests'
+  'src/controller', 'src/model', 'src/service',
+  'src/repository', 'src/middleware', 'src/entity',
+  'src/dto', 'src/config', 'src/helpers',
+  'src/utils', 'src/routes', 'docs', 'public', 'tests'
 ]
 
 export const arquivosMVC_TS = [
-  'app/controller/HomeController.ts',
-  'app/controller/UserController.ts',
-  'app/controller/AuthController.ts',
-  'app/model/UserModel.ts',
-  'app/model/ProductModel.ts',
-  'app/service/UserService.ts',
-  'app/service/AuthService.ts',
-  'app/repository/UserRepository.ts',
-  'app/middleware/auth.middleware.ts',
-  'app/middleware/error.middleware.ts',
-  'app/routes/index.routes.ts',
-  'app/routes/user.routes.ts',
-  'app/config/database.config.ts',
-  'app/config/env.config.ts',
+  'src/controller/HomeController.ts',
+  'src/controller/UserController.ts',
+  'src/controller/AuthController.ts',
+  'src/model/UserModel.ts',
+  'src/model/ProductModel.ts',
+  'src/service/UserService.ts',
+  'src/service/AuthService.ts',
+  'src/repository/UserRepository.ts',
+  'src/middleware/auth.middleware.ts',
+  'src/middleware/error.middleware.ts',
+  'src/routes/index.routes.ts',
+  'src/routes/user.routes.ts',
+  'src/config/database.config.ts',
+  'src/config/env.config.ts',
 ]
-
 // ============================================
 // DDD (Domain-Driven Design) - JavaScript
 // ============================================
