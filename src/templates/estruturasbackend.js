@@ -1,24 +1,22 @@
-// templates/estruturasbackend.js
-
 // ============================================
 // MVC - JavaScript
 // ============================================
 export const pastasMVC_JS = [
-  'src/controller', 'src/model', 'src/service',
-  'src/repository', 'src/middleware', 'src/entity',
+  'src/controllers', 'src/models', 'src/services',
+  'src/repositories', 'src/middleware', 'src/entity',
   'src/dto', 'src/config', 'src/helpers',
   'src/utils', 'src/routes', 'docs', 'public', 'tests'
 ]
 
 export const arquivosMVC_JS = [
-  'src/controller/HomeController.js',
-  'src/controller/UserController.js',
-  'src/controller/AuthController.js',
-  'src/model/UserModel.js',
-  'src/model/ProductModel.js',
-  'src/service/UserService.js',
-  'src/service/AuthService.js',
-  'src/repository/UserRepository.js',
+  'src/controllers/HomeController.js',
+  'src/controllers/UserController.js',
+  'src/controllers/AuthController.js',
+  'src/models/UserModel.js',
+  'src/models/ProductModel.js',
+  'src/services/UserService.js',
+  'src/services/AuthService.js',
+  'src/repositories/UserRepository.js',
   'src/middleware/auth.middleware.js',
   'src/middleware/error.middleware.js',
   'src/routes/index.routes.js',
@@ -31,21 +29,21 @@ export const arquivosMVC_JS = [
 // MVC - TypeScript
 // ============================================
 export const pastasMVC_TS = [
-  'src/controller', 'src/model', 'src/service',
-  'src/repository', 'src/middleware', 'src/entity',
+  'src/controllers', 'src/models', 'src/services',
+  'src/repositories', 'src/middleware', 'src/entity',
   'src/dto', 'src/config', 'src/helpers',
   'src/utils', 'src/routes', 'docs', 'public', 'tests'
 ]
 
 export const arquivosMVC_TS = [
-  'src/controller/HomeController.ts',
-  'src/controller/UserController.ts',
-  'src/controller/AuthController.ts',
-  'src/model/UserModel.ts',
-  'src/model/ProductModel.ts',
-  'src/service/UserService.ts',
-  'src/service/AuthService.ts',
-  'src/repository/UserRepository.ts',
+  'src/controllers/HomeController.ts',
+  'src/controllers/UserController.ts',
+  'src/controllers/AuthController.ts',
+  'src/models/UserModel.ts',
+  'src/models/ProductModel.ts',
+  'src/services/UserService.ts',
+  'src/services/AuthService.ts',
+  'src/repositories/UserRepository.ts',
   'src/middleware/auth.middleware.ts',
   'src/middleware/error.middleware.ts',
   'src/routes/index.routes.ts',

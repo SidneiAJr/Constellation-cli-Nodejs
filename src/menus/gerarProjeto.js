@@ -19,6 +19,14 @@ const frameworkMap = {
   cs:   'csharp',
 }
 
+const nextSteps = {
+  js:   'npm install && npm run dev',
+  ts:   'npm install && npm run dev',
+  java: 'mvn spring-boot:run',
+  php:  'composer install && php -S localhost:8080 -t public',
+  cs:   'dotnet restore && dotnet run',
+}
+
 const configMap = {
   js: (base, projectName, orm) => {
     criarArquivo(path.join(base, 'package.json'),
@@ -34,6 +42,20 @@ const configMap = {
     criarArquivo(path.join(base, 'pom.xml'), buildPomXml(projectName, 'enterprise'))
     criarArquivo(path.join(base, 'src/main/resources/application.properties'),
       buildApplicationProperties(projectName, 'enterprise'))
+    criarArquivo(
+      path.join(base, 'src/main/java/com/constellation/app/Application.java'),
+      `package com.constellation.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}`
+    )
   },
   php: (base, projectName) => {
     criarArquivo(path.join(base, 'composer.json'),
@@ -56,10 +78,22 @@ export async function gerarProjeto(projectName, linguagem, arquitetura, orm) {
   pastas.forEach(p => criarPasta(path.join(base, p)))
   arquivos.forEach(f => criarArquivo(path.join(base, f)))
 
-  generateUniversalMVC(base, frameworkMap[linguagem])
+  generateUniversalMVC(base, frameworkMap[linguagem], 'Usuario', orm)
 
   configMap[linguagem]?.(base, projectName, orm)
 
   criarArquivo(path.join(base, '.gitignore'), gitignoreGlobal)
   criarArquivo(path.join(base, '.env'), envExample(linguagem))
+
+  criarArquivo(path.join(base, 'README.md'),
+`# ${projectName}
+
+## Como rodar
+\`\`\`bash
+cd ${projectName}/Backend
+${nextSteps[linguagem]}
+\`\`\`
+
+## Arquitetura: ${arquitetura.toUpperCase()}${orm ? ` | ORM: ${orm}` : ''}
+`)
 }
