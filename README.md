@@ -147,4 +147,4 @@ O `package.json` gerado é **intencionalmente completo e enterprise**. Ele inclu
 
 ---
 
-Made in Brasil 🇧🇷
+Made with ❤️ by Albertão 🇧🇷
