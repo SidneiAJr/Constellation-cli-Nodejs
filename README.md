@@ -65,15 +65,6 @@ npm i -g albertool-constellation
 constellation
 ```
 
-## 📦 Ou clone o repositório
-
-```bash
-git clone https://github.com/Sidneiajr/constellation-cli
-cd constellation-cli
-npm install
-node bin/cli.js
-```
-
 ---
 
 ## 🚀 Suporte por linguagem
@@ -157,4 +148,3 @@ O `package.json` gerado é **intencionalmente completo e enterprise**. Ele inclu
 ---
 
 Made in Brasil 🇧🇷
-EOF
