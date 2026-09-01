@@ -20,6 +20,11 @@ console.log(chalk.cyan(`
 ╚═══════════════════════════════════════════╝
 `))
 
+console.log(chalk.yellow(`
+  ⚠️  Gera esqueleto — não está pronto para produção.
+  📄 Leia o README antes de usar.
+`))
+
 const { projectName } = await inquirer.prompt([{
   type: 'input',
   name: 'projectName',

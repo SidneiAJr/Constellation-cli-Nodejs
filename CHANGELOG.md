@@ -1,51 +1,57 @@
 # CHANGELOG — Constellation CLI
 
----
-
-## v0.0.1a — Origem
-- Primeira versão, feita em Bash
-- Criava somente estrutura de backend
+Todas as mudanças relevantes do projeto são registradas aqui.
 
 ---
 
-## v0.0.2a — Expansão
-- Passou a instalar dependências automaticamente
-- Adicionado suporte a frontend
+## v5.0.1f — Fix · _atual_
+- Correção no README
 
 ---
 
-## v0.0.3a — Menu Universal
-- Adicionado menu universal via CLI
-- Gerava apenas arquivos vazios, sem templates
+## v5.0.0
+- Correções nos templates Node.js
+- Revisão geral da geração de código
+- `package.json` agora gerado por nível de dependência
+- Suporte a múltiplos ORMs — Prisma, TypeORM, Sequelize, Mongoose
 
 ---
 
-## v1.0.0 — Melhorias Gerais
-- Melhorias internas
-- Ainda sem template universal
+## v4.0.0 — Template Universal
+- Template universal criado por linguagem
+- Suporte simultâneo a Node.js, extensão VS Code e Bash
 
 ---
 
-## v2.0.0 — Ainda em Bash
+## v3.0.0 — Multi-plataforma
+- Extensão VS Code adicionada
+- Suporte a múltiplos ambientes
+
+---
+
+## v2.0.0
 - Refinamentos internos
 - Base ainda em Bash
 
 ---
 
-## v3.0.0 — Multi-plataforma
-- Ganhou "irmãos" — extensão VS Code e suporte a Node.js
-- Mais universal, múltiplos ambientes suportados
+## v1.0.0
+- Melhorias internas gerais
 
 ---
 
-## v4.0.0 — Template Universal
-- Com maior conhecimento de backend, criado o Template Universal por linguagem
-- Suporte a Node.js, extensão VS Code e Bash simultaneamente
+## v0.0.3a
+- Menu universal via CLI
+- Geração de arquivos ainda sem templates
 
 ---
 
-## v5.0.0 — Atual
-- Correções nos templates Node.js
-- Revisão geral da geração de código
-- `package.json` agora gerado por nível de dependência
-- Suporte a múltiplos ORMs — Prisma, TypeORM, Sequelize, Mongoose
+## v0.0.2a
+- Instalação automática de dependências
+- Suporte a frontend adicionado
+
+---
+
+## v0.0.1a — Origem
+- Primeira versão em Bash
+- Criava apenas estrutura de backend
