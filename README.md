@@ -1,3 +1,12 @@
+> [!WARNING]
+> ### ⚠️ Sobre as arquiteturas geradas — MVC, DDD, Clean e Hexagonal
+>
+> As estruturas de pastas e a organização do código gerado são baseadas em **literaturas de referência** — livros, artigos e convenções amplamente usadas na comunidade de desenvolvimento.
+>
+> Isso significa que **podem variar** dependendo da empresa, do time, do país ou da escola de pensamento. Não existe uma implementação "oficial" ou universalmente correta de DDD, Clean Architecture ou Hexagonal — o que o Constellation gera é uma interpretação comum e funcional, não um padrão absoluto.
+>
+> **Use como ponto de partida, não como verdade definitiva.** Adapte a estrutura conforme as convenções do seu time ou projeto.
+
 # 🌟 Constellation CLI | Node.js Edition
 
 Gerador de projetos backend completo. Cria estrutura, arquivos de configuração e código base em segundos.
