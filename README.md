@@ -62,6 +62,7 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 ```bash
 npm i -g albertool-constellation
+npx albertool-constellation
 constellation
 ```
 
