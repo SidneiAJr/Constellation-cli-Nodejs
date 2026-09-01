@@ -67,12 +67,17 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 ---
 
-## 📦 Instalação Global (recomendado)
+## 📦 Instalação | Uso
 
+**Instalar globalmente (recomendado):**
 ```bash
 npm i -g albertool-constellation
-npx albertool-constellation
 constellation
+```
+
+**Ou rodar direto sem instalar:**
+```bash
+npx albertool-constellation
 ```
 
 ---
