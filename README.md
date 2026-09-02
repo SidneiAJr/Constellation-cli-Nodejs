@@ -76,13 +76,13 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 **Instalar globalmente (recomendado):**
 ```bash
-npm i -g albertool-constellation
+npm i -g constellation-cli-albertool
 constellation
 ```
 
 **Ou rodar direto sem instalar:**
 ```bash
-npx albertool-constellation
+npx constellation-cli-albertool
 ```
 
 ---
