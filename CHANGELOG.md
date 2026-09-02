@@ -4,6 +4,14 @@ Todas as mudanças relevantes do projeto são registradas aqui.
 
 ---
 
+## Changelog
+
+### v5.0.1f — Fix · _atual_
+- Correção no README gerado
+- Remove suporte a package.json — usuário instala as dependências manualmente
+
+---
+
 ## v5.0.1f — Fix · _atual_
 - Correção no README
 
