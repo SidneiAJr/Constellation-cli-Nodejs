@@ -17,23 +17,30 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 > ### 🚨 O Constellation NÃO gera um projeto pronto para produção.
 >
-> O que ele gera é um **esqueleto universal** — estrutura de pastas, arquivos de configuração e código base genérico que serve como ponto de partida.
+> O que ele gera é um **esqueleto universal** — estrutura de pastas e código base genérico que serve como ponto de partida.
 >
 > **O que você AINDA precisa fazer após gerar:**
+> - Rodar `npm init -y` e instalar as dependências que o seu projeto precisar
 > - Implementar toda a lógica de negócio do seu sistema
 > - Conectar o banco de dados com suas credenciais reais
 > - Implementar autenticação e autorização conforme sua necessidade
 > - Escrever os testes da sua aplicação
 > - Revisar e adaptar o código gerado para o seu contexto
 > - Configurar variáveis de ambiente antes de rodar
->
+
 > ### 🚨 O código gerado é universal e genérico.
 >
 > Controllers, services e repositories são gerados com métodos `// TODO` — eles compilam e rodam, mas não fazem nada até você implementar.
+
+> ### 📦 package.json não é mais gerado — v5.0.1f
 >
-> ### 🚨 O `package.json` gerado é completo e enterprise.
->
-> Ele vem com **todas** as dependências de um projeto enterprise — autenticação, filas, cache, websocket, email, PDF, logs, testes, etc. Isso não significa que você precisa de tudo isso. Revise o `package.json` e remova o que não vai usar antes de rodar `npm install`.
+> A partir desta versão, o Constellation **não gera mais o `package.json`** automaticamente.
+> Instale apenas o que o seu projeto realmente precisar:
+> ```bash
+> npm init -y
+> npm install express
+> # adicione o que precisar
+> ```
 
 ---
 
@@ -59,10 +66,8 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 - ✅ 5 linguagens — JavaScript, TypeScript, Java, PHP, C#
 - ✅ 4 arquiteturas — MVC, DDD, Clean Architecture, Hexagonal
-- ✅ ORM configurável — Prisma, TypeORM, Sequelize, Mongoose
 - ✅ Estrutura de pastas e arquivos pronta para uso
 - ✅ database.config, env.config, server, middleware e model de Usuario gerados automaticamente
-- ✅ package.json / pom.xml / composer.json / .csproj enterprise gerados
 - ✅ Interface CLI interativa com menus
 
 ---
@@ -84,13 +89,13 @@ npx albertool-constellation
 
 ## 🚀 Suporte por linguagem
 
-| Linguagem  | Framework     | ORM disponível              | Arquiteturas               |
-|------------|---------------|-----------------------------|----------------------------|
-| JavaScript | Express       | Sequelize, Mongoose, Prisma | MVC, DDD, Clean, Hexagonal |
-| TypeScript | Express       | Prisma, TypeORM, Sequelize  | MVC, DDD, Clean, Hexagonal |
-| Java       | Spring Boot   | JPA (nativo)                | MVC, DDD                   |
-| PHP        | Slim          | PDO (nativo)                | MVC, DDD                   |
-| C#         | ASP.NET Core  | Entity Framework Core       | MVC, DDD                   |
+| Linguagem  | Framework     | Arquiteturas               |
+|------------|---------------|----------------------------|
+| JavaScript | Express       | MVC, DDD, Clean, Hexagonal |
+| TypeScript | Express       | MVC, DDD, Clean, Hexagonal |
+| Java       | Spring Boot   | MVC, DDD                   |
+| PHP        | Slim          | MVC, DDD                   |
+| C#         | ASP.NET Core  | MVC, DDD                   |
 
 ---
 
@@ -127,24 +132,7 @@ Backend/
 └── README.md
 ```
 
----
-
-## ⚠️ Sobre o package.json gerado
-
-O `package.json` gerado é **intencionalmente completo e enterprise**. Ele inclui dependências para:
-
-- Autenticação JWT e bcrypt
-- Filas com BullMQ e RabbitMQ
-- Cache com Redis
-- WebSocket com Socket.io
-- Envio de email com Nodemailer
-- Geração de PDF com PDFKit
-- Logs com Winston
-- Documentação com Swagger
-- Testes com Jest
-- E muito mais...
-
-> ⚠️ **Você não precisa de tudo isso.** O objetivo é ter tudo disponível caso precise. Antes de rodar `npm install`, abra o `package.json` e remova as dependências que não vai usar. Instalar tudo desnecessariamente aumenta o tamanho do projeto e o tempo de build.
+> **package.json não é gerado.** Rode `npm init -y` e instale o que precisar.
 
 ---
 
@@ -154,11 +142,19 @@ O `package.json` gerado é **intencionalmente completo e enterprise**. Ele inclu
 
 > 🗄️ **Banco de dados:** As configurações de banco vêm com valores padrão (`localhost`, `root`, sem senha). Nunca suba isso para produção sem alterar.
 
-> 🧪 **Testes:** Nenhum teste é gerado. O `package.json` inclui Jest configurado, mas os testes precisam ser escritos por você.
+> 🧪 **Testes:** Nenhum teste é gerado — escreva os seus.
 
-> 📦 **Dependências:** Versões fixadas na época de geração. Rode `npm audit` e atualize conforme necessário.
+> 📦 **Dependências:** Nenhum `package.json` é gerado. Instale apenas o que o seu projeto precisar.
 
 > 🏗️ **Arquitetura:** A estrutura de pastas segue o padrão da arquitetura escolhida, mas a separação de responsabilidades precisa ser mantida por você durante o desenvolvimento.
+
+---
+
+## 📋 Changelog
+
+### v5.0.1f — Fix · _atual_
+- Correção no README gerado
+- Removido suporte a `package.json` — instale as dependências manualmente
 
 ---
 

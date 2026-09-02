@@ -23,6 +23,14 @@ console.log(chalk.cyan(`
 console.log(chalk.yellow(`
   ⚠️  Gera esqueleto — não está pronto para produção.
   📄 Leia o README antes de usar.
+  📦 Nenhum package.json gerado — instale o que precisar manualmente.
+  🔧 Para JS/TS: rode npm init -y e instale suas dependências.
+  🔐 Sem autenticação por padrão — implemente antes de expor rotas.
+  🗄️  Configure o .env antes de conectar qualquer banco de dados.
+  🧪 Nenhum teste gerado — escreva os seus.
+
+  ⚠️  Gera esqueleto — não está pronto para produção.
+  📄 Leia o README antes de usar.
 `))
 
 const { projectName } = await inquirer.prompt([{
