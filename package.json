@@ -1,19 +1,25 @@
 {
   "name": "albertool-constellation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Gerador de projetos multi-arquitetura e multi-linguagem (MVC, DDD, Clean, Hexagonal) para JS, TS, Java, PHP e C#",
   "license": "MIT",
   "type": "module",
   "bin": {
     "constellation": "bin/cli.js"
   },
-  "main": "index.js",
+  "files": [
+    "bin/",
+    "src/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bin/cli.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cli", "generator", "backend", "nodejs", "typescript",
+    "express", "mvc", "ddd", "clean-architecture", "hexagonal", "scaffold"
+  ],
+  "author": "Albertaodasmassa | SidA",
   "dependencies": {
     "chalk": "^5.6.2",
     "inquirer": "^9.3.0",

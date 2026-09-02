@@ -5,8 +5,8 @@ import ora from 'ora'
 import { gerarProjeto } from './gerarProjeto.js'
 
 const proximosPassos = {
-  js:   'cd Backend && npm install && npm run dev',
-  ts:   'cd Backend && npm install && npm run dev',
+  js:   'cd Backend && npm init -y && npm install express',
+  ts:   'cd Backend && npm init -y && npm install express typescript ts-node-dev',
   java: 'cd Backend && mvn spring-boot:run',
   php:  'cd Backend && composer install && php -S localhost:8080 -t public',
   cs:   'cd Backend && dotnet restore && dotnet run',
@@ -38,32 +38,8 @@ export async function mainMenu(projectName) {
     ]
   }])
 
-  // pergunta ORM só pra JS e TS
-  let orm = null
-  if (linguagem === 'js' || linguagem === 'ts') {
-    const ormChoices = linguagem === 'ts'
-      ? [
-          { name: '🟦 Prisma    — type-safe, moderno', value: 'prisma'    },
-          { name: '🔷 TypeORM   — decorators, migrations', value: 'typeorm'   },
-          { name: '🟡 Sequelize — clássico, maduro',   value: 'sequelize' },
-        ]
-      : [
-          { name: '🟡 Sequelize — SQL clássico',       value: 'sequelize' },
-          { name: '🍃 Mongoose  — MongoDB nativo',      value: 'mongoose'  },
-          { name: '🟦 Prisma    — type-safe, moderno',  value: 'prisma'    },
-        ]
-
-    const res = await inquirer.prompt([{
-      type: 'list',
-      name: 'orm',
-      message: '🗄️  Escolha o ORM:',
-      choices: ormChoices
-    }])
-    orm = res.orm
-  }
-
   const spinner = ora('✨ Gerando projeto...').start()
-  await gerarProjeto(projectName, linguagem, arquitetura, orm)
+  await gerarProjeto(projectName, linguagem, arquitetura)
   spinner.succeed(chalk.green(`✅ Projeto "${projectName}" criado!`))
 
   console.log(chalk.yellow(`
