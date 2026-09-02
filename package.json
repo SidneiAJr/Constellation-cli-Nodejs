@@ -1,6 +1,6 @@
 {
   "name": "albertool-constellation",
-  "version": "1.0.5",
+  "version": "0.0.1a",
   "description": "Gerador de projetos multi-arquitetura e multi-linguagem (MVC, DDD, Clean, Hexagonal) para JS, TS, Java, PHP e C#",
   "license": "MIT",
   "type": "module",
