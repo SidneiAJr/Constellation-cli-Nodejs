@@ -21,9 +21,9 @@ jobs:
 
       - run: npm install
 
-      - run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add package.json package-lock.json
-          git diff --staged --quiet || git commit -m "chore: update dependencies"
-          git push
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: update dependencies'
+          title: 'chore: update dependencies'
+          branch: chore/update-deps
+          body: 'Dependências atualizadas automaticamente pelo ncu'
