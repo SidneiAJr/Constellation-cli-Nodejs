@@ -1,0 +1,29 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install -g npm-check-updates
+
+      - run: ncu -u
+
+      - run: npm install
+
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: update dependencies'
+          title: 'chore: update dependencies'
+          branch: chore/update-deps
+          body: 'Dependências atualizadas automaticamente pelo ncu'
