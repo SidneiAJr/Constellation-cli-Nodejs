@@ -29,3 +29,5 @@ jobs:
           git add package.json
           git commit -m "chore: bump version"
           git push
+
+          asasas
