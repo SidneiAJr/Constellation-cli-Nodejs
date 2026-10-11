@@ -1,49 +1,67 @@
 // mainMenu.js
-import inquirer from 'inquirer'
-import chalk from 'chalk'
-import ora from 'ora'
+import * as readline from 'readline'
 import { gerarProjeto } from './gerarProjeto.js'
+import { depsMenu } from './depsMenu.js'
 
-const proximosPassos = {
-  js:   'cd Backend && npm init -y && npm install express',
-  ts:   'cd Backend && npm init -y && npm install express typescript ts-node-dev',
-  java: 'cd Backend && mvn spring-boot:run',
-  php:  'cd Backend && composer install && php -S localhost:8080 -t public',
-  cs:   'cd Backend && dotnet restore && dotnet run',
+const arquiteturas = { 1: 'mvc', 2: 'ddd', 3: 'clean', 4: 'hexagonal' }
+const linguagens   = { 1: 'js',  2: 'ts',  3: 'java',  4: 'php', 5: 'cs' }
+
+function ask(rl, question) {
+  return new Promise((resolve) => rl.question(question, resolve))
 }
 
 export async function mainMenu(projectName) {
-  const { arquitetura } = await inquirer.prompt([{
-    type: 'list',
-    name: 'arquitetura',
-    message: '🏗️  Escolha a arquitetura:',
-    choices: [
-      { name: '🏗️  MVC',      value: 'mvc'       },
-      { name: '🎯  DDD',       value: 'ddd'       },
-      { name: '🧹  Clean',     value: 'clean'     },
-      { name: '🔷  Hexagonal', value: 'hexagonal' },
-    ]
-  }])
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 
-  const { linguagem } = await inquirer.prompt([{
-    type: 'list',
-    name: 'linguagem',
-    message: '🌐 Escolha a linguagem:',
-    choices: [
-      { name: '🟡 JavaScript (Node/Express)', value: 'js'   },
-      { name: '🔵 TypeScript (Node/Express)', value: 'ts'   },
-      { name: '☕ Java (Spring Boot)',         value: 'java' },
-      { name: '🐘 PHP (Slim)',                 value: 'php'  },
-      { name: '🔷 C# (ASP.NET Core)',          value: 'cs'   },
-    ]
-  }])
+  console.log('\n🏗️  Escolha a arquitetura / Choose architecture:')
+  console.log('1. MVC')
+  console.log('2. DDD')
+  console.log('3. Clean')
+  console.log('4. Hexagonal\n')
 
-  const spinner = ora('✨ Gerando projeto...').start()
-  await gerarProjeto(projectName, linguagem, arquitetura)
-  spinner.succeed(chalk.green(`✅ Projeto "${projectName}" criado!`))
+  const archInput = await ask(rl, '> ')
+  const arquitetura = arquiteturas[archInput]
+  if (!arquitetura) { console.log('❌ Opção inválida / Invalid option'); rl.close(); return }
 
-  console.log(chalk.yellow(`
-🚀 Próximos passos:
-   cd ${projectName}/${proximosPassos[linguagem]}
-  `))
+  console.log('\n🌐 Escolha a linguagem / Choose language:')
+  console.log('1. JavaScript (Node/Express)')
+  console.log('2. TypeScript (Node/Express)')
+  console.log('3. Java (Spring Boot)')
+  console.log('4. PHP (Slim)')
+  console.log('5. C# (ASP.NET Core)\n')
+
+  const langInput = await ask(rl, '> ')
+  const linguagem = linguagens[langInput]
+  if (!linguagem) { console.log('❌ Opção inválida / Invalid option'); rl.close(); return }
+
+  let orm = null
+
+  if (linguagem === 'js' || linguagem === 'ts') {
+    console.log('\n📦 Escolha o ORM / Choose ORM:')
+    console.log('1. Prisma')
+    console.log('2. TypeORM')
+    console.log('3. Sequelize')
+    console.log('4. Mongoose')
+    console.log('5. Darkstar ORM\n')
+
+    const ormInput = await ask(rl, '> ')
+    const orms = { 1: 'prisma', 2: 'typeorm', 3: 'sequelize', 4: 'mongoose', 5: 'darkstar' }
+    orm = orms[ormInput]
+    if (!orm) { console.log('❌ Opção inválida / Invalid option'); rl.close(); return }
+  }
+
+  const instalar = await ask(rl, '\n📥 Instalar dependências agora? / Install dependencies now? (s/n): ')
+
+  rl.close()
+
+  console.log('\n✨ Gerando projeto... / Generating project...')
+  await gerarProjeto(projectName, linguagem, arquitetura, orm)
+
+  if ((instalar.toLowerCase() === 's' || instalar.toLowerCase() === 'y') &&
+      (linguagem === 'js' || linguagem === 'ts')) {
+    await depsMenu(`${projectName}/Backend`, orm)
+  }
+
+  console.log(`\n✅ Projeto "${projectName}" criado! / Project created!`)
+  console.log(`\n🚀 Próximos passos / Next steps:\n   cd ${projectName}/Backend\n`)
 }

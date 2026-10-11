@@ -1,11 +1,13 @@
 {
   "name": "constellation-cli-albertool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gerador de projetos multi-arquitetura e multi-linguagem (MVC, DDD, Clean, Hexagonal) para JS, TS, Java, PHP e C#",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "constellation": "bin/cli.js"
+    "constellation": "bin/cli.js",
+    "cs": "bin/cli.js",
+    "cs-new": "bin/cli.js"
   },
   "files": [
     "bin/",
@@ -16,13 +18,22 @@
     "start": "node bin/cli.js"
   },
   "keywords": [
-    "cli", "generator", "backend", "nodejs", "typescript",
-    "express", "mvc", "ddd", "clean-architecture", "hexagonal", "scaffold"
+    "cli",
+    "generator",
+    "backend",
+    "nodejs",
+    "typescript",
+    "express",
+    "mvc",
+    "ddd",
+    "clean-architecture",
+    "hexagonal",
+    "scaffold"
   ],
   "author": "Albertaodasmassa | SidA",
   "dependencies": {
-    "chalk": "^6.0.1",
-    "inquirer": "^14.2.3",
-    "ora": "^9.4.1"
+    "mysql2": "^3.24.5",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^1.1.2"
   }
 }
