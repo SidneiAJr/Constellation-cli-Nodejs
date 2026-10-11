@@ -14,14 +14,6 @@ const frameworkMap = {
   cs:   'csharp',
 }
 
-const nextSteps = {
-  js:   'npm init -y && npm install express',
-  ts:   'npm init -y && npm install express typescript ts-node-dev',
-  java: 'mvn spring-boot:run',
-  php:  'composer install && php -S localhost:8080 -t public',
-  cs:   'dotnet restore && dotnet run',
-}
-
 export async function gerarProjeto(projectName, linguagem, arquitetura) {
   const base = path.join(projectName, 'Backend')
 
@@ -42,15 +34,15 @@ export async function gerarProjeto(projectName, linguagem, arquitetura) {
   criarArquivo(path.join(base, 'README.md'),
 `# ${projectName}
 
-## Como rodar
+## Como rodar / How to run
 
 \`\`\`bash
 cd ${projectName}/Backend
-${nextSteps[linguagem]}
 \`\`\`
 
-## Arquitetura: ${arquitetura.toUpperCase()}
+## Arquitetura / Architecture: ${arquitetura.toUpperCase()}
 
-> Instale as dependências que o seu projeto precisar manualmente.
+> PT: Instale as dependências que o seu projeto precisar manualmente.
+> EN: Install the dependencies your project needs manually.
 `)
 }

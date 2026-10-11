@@ -2,7 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function generateUniversalMVC(projectPath, framework, entityName = 'Usuario', orm = 'prisma') {
+export function generateUniversalMVC(projectPath, framework, entityName = 'Usuario', orm) {
     switch (framework) {
         case 'typescript': generateTS(projectPath, entityName, orm); generateModels(projectPath, 'typescript', orm); break;
         case 'javascript': generateJS(projectPath, entityName, orm); generateModels(projectPath, 'javascript', orm); break;

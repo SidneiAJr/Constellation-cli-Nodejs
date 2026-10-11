@@ -1,46 +1,53 @@
 > [!WARNING]
-> ### ⚠️ Sobre as arquiteturas geradas — MVC, DDD, Clean e Hexagonal
+> ### ⚠️ About the generated architectures — MVC, DDD, Clean and Hexagonal
 >
-> As estruturas de pastas e a organização do código gerado são baseadas em **literaturas de referência** — livros, artigos e convenções amplamente usadas na comunidade de desenvolvimento.
+> The folder structures and code organization are based on **reference literature** — books, articles and conventions widely used in the dev community.
 >
-> Isso significa que **podem variar** dependendo da empresa, do time, do país ou da escola de pensamento. Não existe uma implementação "oficial" ou universalmente correta de DDD, Clean Architecture ou Hexagonal — o que o Constellation gera é uma interpretação comum e funcional, não um padrão absoluto.
+> They **may vary** depending on the company, team, country or school of thought. There is no "official" or universally correct implementation of DDD, Clean Architecture or Hexagonal — what Constellation generates is a common and functional interpretation, not an absolute standard.
 >
-> **Use como ponto de partida, não como verdade definitiva.** Adapte a estrutura conforme as convenções do seu time ou projeto.
+> **Use as a starting point, not as the final truth.** Adapt the structure to your team's conventions.
 
 # 🌟 Constellation CLI | Node.js Edition
 
-Gerador de projetos backend completo. Cria estrutura, arquivos de configuração e código base em segundos.
+Full backend project generator. Creates folder structure, config files and base code in seconds.
 
 ---
 
-## ⚠️ LEIA ANTES DE USAR — IMPORTANTE
+## ⚠️ READ BEFORE USING — IMPORTANT
 
-> ### 🚨 O Constellation NÃO gera um projeto pronto para produção.
+> ### 🚨 Constellation does NOT generate a production-ready project.
 >
-> O que ele gera é um **esqueleto universal** — estrutura de pastas e código base genérico que serve como ponto de partida.
+> What it generates is a **universal skeleton** — folder structure and generic base code as a starting point.
 >
-> **O que você AINDA precisa fazer após gerar:**
-> - Rodar `npm init -y` e instalar as dependências que o seu projeto precisar
-> - Implementar toda a lógica de negócio do seu sistema
-> - Conectar o banco de dados com suas credenciais reais
-> - Implementar autenticação e autorização conforme sua necessidade
-> - Escrever os testes da sua aplicação
-> - Revisar e adaptar o código gerado para o seu contexto
-> - Configurar variáveis de ambiente antes de rodar
+> **What you STILL need to do after generating:**
+> - Implement all business logic
+> - Connect the database with your real credentials
+> - Implement authentication and authorization before exposing any route
+> - Write your own tests
+> - Review and adapt the generated code to your context
+> - Configure environment variables before running
 
-> ### 🚨 O código gerado é universal e genérico.
+> ### 🚨 The generated code is universal and generic.
 >
-> Controllers, services e repositories são gerados com métodos `// TODO` — eles compilam e rodam, mas não fazem nada até você implementar.
+> Controllers, services and repositories are generated with `// TODO` methods — they compile and run, but do nothing until you implement them.
 
-> ### 📦 package.json não é mais gerado — v5.0.1f
+> ### 📦 A basic package.json is generated automatically
 >
-> A partir desta versão, o Constellation **não gera mais o `package.json`** automaticamente.
-> Instale apenas o que o seu projeto realmente precisar:
+> Constellation generates a `package.json` with `name`, `version`, `scripts` (start/dev) and `"type": "module"` ready to go.
+>
+> Install only what your project actually needs after generating:
 > ```bash
-> npm init -y
 > npm install express
-> # adicione o que precisar
+> # add what you need
 > ```
+
+> ### 🚨 Dependencies are always installed at `@latest`.
+>
+> When using the built-in installer, all packages are pulled at their **latest** version at the time of generation. This means:
+> - Breaking changes may occur if a package releases a major version
+> - Always check the installed versions after generation
+> - Pin your versions in `package.json` before going to production
+> - Run `npm audit` after installing
 
 ---
 
@@ -50,7 +57,7 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 ---
 
-## 🧰 Tecnologias Disponíveis
+## 🧰 Available Technologies
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="45" title="JavaScript"/>
@@ -62,34 +69,45 @@ Gerador de projetos backend completo. Cria estrutura, arquivos de configuração
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- ✅ 5 linguagens — JavaScript, TypeScript, Java, PHP, C#
-- ✅ 4 arquiteturas — MVC, DDD, Clean Architecture, Hexagonal
-- ✅ Estrutura de pastas e arquivos pronta para uso
-- ✅ database.config, env.config, server, middleware e model de Usuario gerados automaticamente
-- ✅ Interface CLI interativa com menus
+- ✅ 5 languages — JavaScript, TypeScript, Java, PHP, C#
+- ✅ 4 architectures — MVC, DDD, Clean Architecture, Hexagonal
+- ✅ Folder structure and files ready to use
+- ✅ `package.json` basic generated automatically
+- ✅ database.config, env.config, server, middleware and Usuario model generated automatically
+- ✅ Interactive CLI with numbered menus (no arrow keys — safe on any terminal)
+- ✅ Built-in ORM installer — Prisma, TypeORM, Sequelize, Mongoose, Darkstar ORM
+- ✅ Built-in database driver installer — MySQL, PostgreSQL
+- ✅ `.env` auto-configured with correct ports (MySQL: 3306 / PostgreSQL: 5432)
+- ✅ All packages installed at `@latest`
 
 ---
 
-## 📦 Instalação | Uso
+## 📦 Installation | Usage
 
-**Instalar globalmente (recomendado):**
+**Install globally (recommended):**
 ```bash
 npm i -g constellation-cli-albertool
 constellation
 ```
 
-**Ou rodar direto sem instalar:**
+**Or run directly without installing:**
 ```bash
 npx constellation-cli-albertool
 ```
 
+**Aliases also available:**
+```bash
+cs
+cs-new
+```
+
 ---
 
-## 🚀 Suporte por linguagem
+## 🚀 Language support
 
-| Linguagem  | Framework     | Arquiteturas               |
+| Language   | Framework     | Architectures              |
 |------------|---------------|----------------------------|
 | JavaScript | Express       | MVC, DDD, Clean, Hexagonal |
 | TypeScript | Express       | MVC, DDD, Clean, Hexagonal |
@@ -99,62 +117,71 @@ npx constellation-cli-albertool
 
 ---
 
-## 🏗️ Arquiteturas suportadas
+## 🏗️ Supported Architectures
 
-| Arquitetura | Descrição                      | Disponível para        |
-|-------------|--------------------------------|------------------------|
-| MVC         | Model-View-Controller          | JS, TS, Java, PHP, C#  |
-| DDD         | Domain-Driven Design           | JS, TS, Java, PHP, C#  |
-| Clean       | Clean Architecture (Uncle Bob) | JS, TS                 |
-| Hexagonal   | Ports & Adapters               | JS, TS                 |
+| Architecture | Description                    | Available for          |
+|--------------|--------------------------------|------------------------|
+| MVC          | Model-View-Controller          | JS, TS, Java, PHP, C#  |
+| DDD          | Domain-Driven Design           | JS, TS, Java, PHP, C#  |
+| Clean        | Clean Architecture (Uncle Bob) | JS, TS                 |
+| Hexagonal    | Ports & Adapters               | JS, TS                 |
 
 ---
 
-## 📁 O que é gerado automaticamente
+## 📁 What is generated automatically
 
 ```
 Backend/
-├── server.ts / server.js          ← Express configurado e pronto
+├── package.json                   ← Basic (name, version, scripts, type: module)
+├── server.ts / server.js          ← Express configured and ready
 ├── src/
 │   ├── config/
-│   │   ├── database.config        ← Conexão com banco (varia por ORM)
-│   │   └── env.config             ← Exporta variáveis de ambiente
-│   ├── controllers/               ← Controller base com CRUD (métodos TODO)
-│   ├── services/                  ← Service conectado ao repository (métodos TODO)
-│   ├── repositories/              ← Repository com métodos prontos (métodos TODO)
-│   ├── models/                    ← Model de Usuario (usuario, email, senha)
-│   ├── routes/                    ← Rotas registradas e index.routes
+│   │   ├── database.config        ← DB connection (varies by ORM)
+│   │   └── env.config             ← Exports environment variables
+│   ├── controllers/               ← Base CRUD controller (TODO methods)
+│   ├── services/                  ← Service connected to repository (TODO methods)
+│   ├── repositories/              ← Repository with base methods (TODO methods)
+│   ├── models/                    ← Usuario model (usuario, email, senha)
+│   ├── routes/                    ← Registered routes and index.routes
 │   └── middleware/
-│       ├── auth.middleware         ← JWT verificado
-│       └── error.middleware        ← Handler global de erros
-├── .env                           ← Variáveis prontas pra preencher
+│       ├── auth.middleware         ← JWT verification
+│       └── error.middleware        ← Global error handler
+├── .env                           ← Variables ready to fill
 ├── .gitignore
 └── README.md
 ```
 
-> **package.json não é gerado.** Rode `npm init -y` e instale o que precisar.
-
 ---
 
-## ⚠️ Avisos gerais
+## ⚠️ General Warnings
 
-> 🔐 **Segurança:** O código gerado não implementa segurança por padrão. Adicione validação, sanitização e autenticação antes de expor qualquer rota.
+> 🔐 **Security:** The generated code does not implement security by default. Add validation, sanitization and authentication before exposing any route.
 
-> 🗄️ **Banco de dados:** As configurações de banco vêm com valores padrão (`localhost`, `root`, sem senha). Nunca suba isso para produção sem alterar.
+> 🗄️ **Database:** DB configs come with default values (`localhost`, `root`, no password). Never push this to production without changing them.
 
-> 🧪 **Testes:** Nenhum teste é gerado — escreva os seus.
+> 🧪 **Tests:** No tests are generated — write your own.
 
-> 📦 **Dependências:** Nenhum `package.json` é gerado. Instale apenas o que o seu projeto precisar.
+> 📦 **Dependencies:** A basic `package.json` is generated. Install only what your project needs.
 
-> 🏗️ **Arquitetura:** A estrutura de pastas segue o padrão da arquitetura escolhida, mas a separação de responsabilidades precisa ser mantida por você durante o desenvolvimento.
+> 🏗️ **Architecture:** The folder structure follows the chosen architecture pattern, but the separation of concerns must be maintained by you during development.
+
+> ⚡ **Latest versions:** All packages are installed at `@latest`. Pin your versions in `package.json` before going to production and always run `npm audit`.
 
 ---
 
 ## 📋 Changelog
 
-### v5.0.1f — Fix · _atual_
-- Correção no README gerado
-- Removido suporte a `package.json` — instale as dependências manualmente
+### v5.0.3f — Fix · _current_
+- `package.json` basic re-introduced — generated automatically with name, version, scripts and `"type": "module"`
+- README updated to reflect the change
+- Version bumped to **5.0.3f** — this release is a direct descendant of the original **Constellation Coffee Edition 3.5** Bash script (`.sh`), which already generated full project structures for JS, TS, Java, PHP and Angular/React. The Node.js CLI rewrite preserved the same philosophy and progressively extended it across the 4.x and 5.x lines.
+
+### v5.0.1f — Fix
+- README updated to English
+- Added built-in ORM and database installer
+- `.env` auto-configured with correct ports
+- Removed `package.json` generation — install dependencies manually _(reverted in v5.0.3f)_
+- All dependencies installed at `@latest`
 
 ---
 
