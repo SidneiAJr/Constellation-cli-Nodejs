@@ -1,5 +1,6 @@
-// depsMenu.js
 import * as readline from 'readline'
+import * as fs from 'fs'
+import * as path from 'path'
 import { installOrm } from '../installers/orms.js'
 import { installDatabase, setEnv } from '../installers/databases.js'
 
@@ -8,6 +9,30 @@ const bancos = { 1: 'mysql', 2: 'postgres' }
 
 function ask(rl, question) {
   return new Promise((resolve) => rl.question(question, resolve))
+}
+
+function generatePackageJson(projectPath) {
+  const pkg = {
+    name: path.basename(projectPath).toLowerCase().replace(/\s+/g, '-'),
+    version: '1.0.0',
+    description: '',
+    main: 'server.js',
+    type: 'module',
+    scripts: {
+      start: 'node server.js',
+      dev: 'node --watch server.js'
+    },
+    keywords: [],
+    author: '',
+    license: 'ISC'
+  }
+
+  fs.writeFileSync(
+    path.join(projectPath, 'package.json'),
+    JSON.stringify(pkg, null, 2)
+  )
+
+  console.log('📄 package.json gerado!')
 }
 
 export async function depsMenu(projectPath, orm = null) {
@@ -40,6 +65,7 @@ export async function depsMenu(projectPath, orm = null) {
 
   rl.close()
 
+  generatePackageJson(projectPath)
   await installOrm(orm, projectPath)
 
   if (banco) {
